@@ -12,6 +12,4 @@ Pod::Spec.new do |s|
   s.source        = { package["repository"]["type"] => package["repository"]["url"], :tag => package["version"] }
   s.source_files  = "RNUncontrolledDatePickerIOS.{h,m}"
   s.requires_arc  = true
-
-  s.dependency "React"
 end

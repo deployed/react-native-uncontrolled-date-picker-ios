@@ -20,7 +20,13 @@ export default class UncontrolledDatePickerIOS extends Component {
     /**
      * The currently selected date.
      */
-    date: PropTypes.instanceOf(Date).isRequired,
+    date: PropTypes.instanceOf(Date),
+
+    /**
+     * If mode is `countdown`, the currently selected countdown duration in
+     * seconds.
+     */
+    countDownDuration: PropTypes.number,
 
     /**
      * Maximum date.
@@ -39,7 +45,7 @@ export default class UncontrolledDatePickerIOS extends Component {
     /**
      * The date picker mode.
      */
-    mode: PropTypes.oneOf(['date', 'time', 'datetime']),
+    mode: PropTypes.oneOf(['date', 'time', 'datetime', 'countdown']),
 
     /**
      * The interval at which minutes can be selected.
@@ -77,6 +83,7 @@ export default class UncontrolledDatePickerIOS extends Component {
     const {
       date,
       mode,
+      countDownDuration,
       minimumDate,
       maximumDate,
       minuteInterval,
@@ -88,7 +95,8 @@ export default class UncontrolledDatePickerIOS extends Component {
         <RNUncontrolledDatePickerIOS
           ref={(picker) => { this._picker = picker; }}
           style={styles.datePickerIOS}
-          date={date.getTime()}
+          date={date && date.getTime()}
+          countDownDuration={countDownDuration}
           maximumDate={maximumDate ? maximumDate.getTime() : undefined}
           minimumDate={minimumDate ? minimumDate.getTime() : undefined}
           mode={mode}
